@@ -1,0 +1,15 @@
+.graph-base {
+  /* position: relative; */
+  width: 32rem;
+  height: 32rem;
+  border-left: var(--grey-dark) solid 4px;
+  border-bottom: var(--grey-dark) solid 4px;
+}
+
+.graph-point {
+  background-color: var(--grey-dark);
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  position: absolute;
+}
