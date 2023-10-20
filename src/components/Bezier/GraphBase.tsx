@@ -32,7 +32,12 @@ export const GraphBase = () => {
         x:{coordinates?.x} y:{coordinates?.y}
       </p>
       <div className="graph-base" id="graph-base" onClick={handleClick}>
-        {coordinates && <GraphPoint {...coordinates} />}
+        {coordinates && (
+          <GraphPoint
+            coordinates={coordinates}
+            setCoordinates={setCoordinates}
+          />
+        )}
       </div>
     </>
   );

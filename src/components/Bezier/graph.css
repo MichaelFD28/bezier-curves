@@ -7,9 +7,14 @@
 }
 
 .graph-point {
-  background-color: var(--grey-dark);
   width: 16px;
   height: 16px;
+  background-color: var(--grey-dark);
   border-radius: 16px;
   position: absolute;
+  cursor: grab;
+}
+
+.dragging {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
