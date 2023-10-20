@@ -29,7 +29,17 @@ export const GraphPoint: React.FC<Props> = ({
     );
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd: React.DragEventHandler<HTMLDivElement> = (
+    e: React.DragEvent<HTMLDivElement>
+  ) => {
+    setTimeout(
+      () =>
+        setCoordinates({
+          x: e.pageX,
+          y: e.pageY,
+        }),
+      100
+    );
     setIsDragging(false);
   };
 
@@ -39,7 +49,6 @@ export const GraphPoint: React.FC<Props> = ({
       style={{
         left: `${coordinates.x - 8}px`,
         top: `${coordinates.y - 8}px`,
-        display: `${coordinates ? "block" : "hidden"}`,
       }}
       draggable
       onDragStart={handleDragStart}

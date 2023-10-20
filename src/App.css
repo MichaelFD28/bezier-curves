@@ -4,6 +4,7 @@ body,
   --grey-dark: #4f4e4a;
   --grey-mid: #8f8d86;
   --grey-light: #e3e0d5;
+  --error: #bd3d2f;
 
   margin: 0 auto;
   min-height: 100vh;

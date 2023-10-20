@@ -15,6 +15,20 @@
   cursor: grab;
 }
 
+.graph-marker-x {
+  width: 6px;
+  height: 16px;
+  background-color: var(--grey-dark);
+  position: absolute;
+}
+
+.graph-marker-y {
+  width: 16px;
+  height: 6px;
+  background-color: var(--grey-dark);
+  position: absolute;
+}
+
 .dragging {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
