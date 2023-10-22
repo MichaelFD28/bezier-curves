@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./graph.css";
 import { GraphPoint } from "./GraphPoint";
 import { errorToast } from "../../utils/toast";
 import { GraphMarker } from "./GraphMarker";
+import { GraphLine } from "./GraphLine";
 
 export type Coordinates = {
   x: number;
@@ -19,17 +20,19 @@ export type Coordinates = {
 // draw lines that connect these points.
 // will have to use some sort of bezier transform.
 
+// TODO rerender graph (based on new boundingClientRect) when screen dimensions change
+
 export const GraphBase = () => {
   const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 
-  const graphPlane = document.getElementById("graph-base");
-  const graphBaseDomrect = graphPlane?.getBoundingClientRect();
+  const graphPlaneRef: React.MutableRefObject<HTMLDivElement | null> =
+    useRef(null);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
-    if (!graphBaseDomrect) {
-      errorToast("Error with rending graph, please reload.");
+    if (!graphPlaneRef?.current) {
+      errorToast("Error with rendering graph, please reload.");
       return;
     }
 
@@ -44,8 +47,13 @@ export const GraphBase = () => {
       <p>
         x:{coordinates?.x} y:{coordinates?.y}
       </p>
-      <div className="graph-base" id="graph-base" onClick={handleClick}>
-        {coordinates && graphBaseDomrect && (
+      <div
+        className="graph-base"
+        id="graph-base"
+        onClick={handleClick}
+        ref={graphPlaneRef}
+      >
+        {coordinates && graphPlaneRef?.current && (
           <>
             <GraphPoint
               coordinates={coordinates}
@@ -53,7 +61,11 @@ export const GraphBase = () => {
             />
             <GraphMarker
               pointCoordinates={coordinates}
-              domrect={graphBaseDomrect}
+              domrect={graphPlaneRef.current.getBoundingClientRect()}
+            />
+            <GraphLine
+              pointCoordinates={coordinates}
+              domrect={graphPlaneRef.current.getBoundingClientRect()}
             />
           </>
         )}

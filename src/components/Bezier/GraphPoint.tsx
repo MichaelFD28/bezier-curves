@@ -19,6 +19,7 @@ export const GraphPoint: React.FC<Props> = ({
   const handleDrag: React.DragEventHandler<HTMLDivElement> = (
     e: React.DragEvent<HTMLDivElement>
   ) => {
+    // delay drag for trailing effect
     setTimeout(
       () =>
         setCoordinates({

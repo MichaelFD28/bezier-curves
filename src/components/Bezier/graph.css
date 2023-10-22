@@ -1,5 +1,4 @@
 .graph-base {
-  /* position: relative; */
   width: 32rem;
   height: 32rem;
   border-left: var(--grey-dark) solid 4px;

@@ -13,7 +13,6 @@ export const errorToast = (message: string | JSX.Element) => {
     ) : (
       message
     );
-  console.log("toasting");
 
   toast(content, {
     position: toast.POSITION.TOP_RIGHT,

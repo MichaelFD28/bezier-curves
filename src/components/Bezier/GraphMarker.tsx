@@ -24,7 +24,9 @@ export const GraphMarker: React.FC<Props> = ({ pointCoordinates, domrect }) => {
       <div
         className={`graph-marker-x`}
         style={{
-          left: `${markerCoordinates("x").x - 8}px`,
+          // markers remove the diff from the radius of the graph point
+          // and shift so they intersect the axes at their middle
+          left: `${markerCoordinates("x").x - 4}px`,
           top: `${markerCoordinates("x").y - 8}px`,
         }}
       />
@@ -32,7 +34,7 @@ export const GraphMarker: React.FC<Props> = ({ pointCoordinates, domrect }) => {
         className={`graph-marker-y`}
         style={{
           left: `${markerCoordinates("y").x - 8}px`,
-          top: `${markerCoordinates("y").y - 8}px`,
+          top: `${markerCoordinates("y").y - 4}px`,
         }}
       />
     </>
