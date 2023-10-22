@@ -7,9 +7,6 @@ type Props = {
 };
 
 export const GraphLine: React.FC<Props> = ({ domrect, pointCoordinates }) => {
-  // graph plane width is 516px
-  // maybe generate a bunch of points between the user's chosen points to fit this?
-
   // Every <polyline> consists of a comma-separated list of X and Y values, relative to the view-box.
   // This is how each point of the line is positioned within the SVG node.
 
@@ -17,7 +14,7 @@ export const GraphLine: React.FC<Props> = ({ domrect, pointCoordinates }) => {
     () => [
       {
         x: 0,
-        y: 516,
+        y: 512,
       },
       // point coordinates will now be based on the view-box
       // need to calculate position relative to graph
@@ -26,8 +23,8 @@ export const GraphLine: React.FC<Props> = ({ domrect, pointCoordinates }) => {
         y: pointCoordinates.y - domrect.top + 2,
       },
       {
-        x: 516,
-        y: 516,
+        x: 512,
+        y: 512,
       },
     ],
     [pointCoordinates.x, pointCoordinates.y, domrect.left, domrect.top]
@@ -38,7 +35,7 @@ export const GraphLine: React.FC<Props> = ({ domrect, pointCoordinates }) => {
   }, "");
 
   return (
-    <svg x="0px" y="0px" viewBox="0 0 516 516" fill="none" stroke="#4f4e4a">
+    <svg x="0px" y="0px" viewBox="0 0 512 512" fill="none" stroke="#4f4e4a">
       <polyline points={polylineCoordinates} strokeWidth={"2"} />
     </svg>
   );

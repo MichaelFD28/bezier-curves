@@ -7,6 +7,8 @@ type Props = {
   setCoordinates: (value: Coordinates) => void;
 };
 
+// TODO stop the point from being dragged out of the boundary container
+
 export const GraphPoint: React.FC<Props> = ({
   coordinates,
   setCoordinates,

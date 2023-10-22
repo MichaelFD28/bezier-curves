@@ -23,14 +23,18 @@ export type Coordinates = {
 // TODO rerender graph (based on new boundingClientRect) when screen dimensions change
 
 export const GraphBase = () => {
+  const [isAddingPoint, setIsAddingPoint] = useState(false);
   const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
 
   const graphPlaneRef: React.MutableRefObject<HTMLDivElement | null> =
     useRef(null);
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (
+  const handleButtonClick = () => setIsAddingPoint(true);
+
+  const handleAddPoint: React.MouseEventHandler<HTMLDivElement> = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
+    if (!isAddingPoint) return;
     if (!graphPlaneRef?.current) {
       errorToast("Error with rendering graph, please reload.");
       return;
@@ -40,17 +44,18 @@ export const GraphBase = () => {
       x: e.clientX,
       y: e.clientY,
     });
+    setIsAddingPoint(false);
   };
 
   return (
     <>
-      <p>
-        x:{coordinates?.x} y:{coordinates?.y}
-      </p>
+      <div className="graph-info-container">
+        <button onClick={handleButtonClick}>Add new point</button>
+      </div>
       <div
         className="graph-base"
         id="graph-base"
-        onClick={handleClick}
+        onClick={handleAddPoint}
         ref={graphPlaneRef}
       >
         {coordinates && graphPlaneRef?.current && (
